@@ -22,3 +22,6 @@ SELECT * FROM revenuebills WHERE TO_DAYS(revenueBillsCreateTime) = TO_DAYS(NOW()
 
 //user表和investment表的关联查询
 SELECT * FROM investment WHERE investmentid IN (SELECT iid  FROM userinvestment WHERE uid =4)
+
+
+aaaaaaaaa
