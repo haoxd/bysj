@@ -1,0 +1,100 @@
+
+#footer{
+    width: 100%;
+    height: auto;
+    /*min-width: 1170px;*/
+}
+
+/*��վ�ŵ�*/
+.footer-serve{
+    height: 80px;
+    width: 100%;
+    background-color: #f4f4f4;
+    overflow: hidden;
+}
+.serve-ul{
+    width: 1169px;
+    margin: 0 auto;
+    height: auto;
+}
+.serve-ul-li{
+    height: 60px;
+    margin-top: 10px;
+    float: left;
+    width: 24%;
+    border-left: 1px solid #f0ac96;
+    text-align: center;
+}
+.serve-ul-li:last-child{
+    border-right: 1px solid #f0ac96;
+}
+.serve-ul-li img,.serve-ul-li div{
+    float: left;
+}
+.serve-ul-li img{
+    margin-left: 22%;
+}
+.serve-ul-li div{
+    margin-left: 10%;
+    font-size: 19px;
+    color: #ed5c2e;
+    line-height: 30px;
+}
+
+
+
+
+/* �����Ӳ˵� */
+.footer-menu{
+    clear: both;
+    height: 200px;
+    width: 100%;
+    background-color: #e8e8e8;
+}
+.footer-menu div{
+    width: 1169px;
+    margin: 0 auto;
+}
+.fm-list{
+    float: left;
+    width: 14%;
+    margin-left: 30px;
+}
+.fm-list li{
+    margin: 10px 0;
+}
+.fm-list li a{
+    font-size: 14px;
+    color: #a6a6a6;
+}
+.fm-list li:first-child a{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #4a4a4a;
+}
+
+
+/*��Ȩ���ַ*/
+.footer-content{
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    background-color: #000;
+    color: #cacaca;
+}
+.footer-content div{
+    width: 1169px;
+    margin: 0 auto;
+}
+.fp{
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+}
+.footer-copyright{
+    float: left;
+}
+.footer-address{
+    float: right;
+}

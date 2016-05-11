@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+namespace="必须与对应的接口名一致";
+id：=“必须与接口的对应的方法名一直”
+
+
+  -->
+
+
+<mapper namespace="com.hxd.dao.userMapper" >
+
+<!-- 添加二级缓存，以减少数据库的访问量 --> 
+<!-- 
+eviction="FIFO"  //回收策略为先进先出
+flushInterval="60000" //自动刷新时间60s
+size="512" //最多缓存512个引用对象
+readOnly="true"/> //只读
+ -->
+ <!-- 1. 映射语句文件中的所有select语句将会被缓存。 
+2. 映射语句文件中的所有insert，update和delete语句会刷新缓存。 
+3. 缓存会使用Least Recently Used（LRU，最近最少使用的）算法来收回。 
+4. 缓存会根据指定的时间间隔来刷新。 
+5. 缓存会存储1024个对象 -->
+<cache 
+size="512" 
+readOnly="true"
+flushInterval="60000"
+eviction="FIFO"
+>
+</cache>
+ 
+   
+    <insert id="addUser" parameterType="User">
+    insert into user 
+    (userName,userNickName,userPassword,userPhone,userSex,userAge,userEmil,userIdcard,userText,userCreateTime,userChangeTime,userState)
+     values 
+    (
+    #{userName},
+    #{userNickName},
+    #{userPassword},
+    #{userPhone},
+    #{userSex},
+    #{userAge},
+    #{userEmil},
+    #{userIdcard},
+    #{userText},
+    #{userCreateTime},
+    #{userChangeTime},
+    #{userState}
+    ) 
+     
+    </insert>
+    
+    <select id="queryUserLoginSystem" resultType="User" >
+    SELECT
+     *
+     FROM user
+      WHERE 
+     userPhone=#{0} AND userPassword=#{1} and userState='正常'
+    </select>
+    <!-- mybatis进行多参数查询时，，0.1表示mapper接口当中方法的第一个和第二个参数 -->
+     <select id="queryUserByuserPhone" resultType="User">
+    SELECT
+     *
+     FROM user
+      WHERE 
+     userPhone=#{0} AND userPassword=#{1}
+    </select>
+    <!-- 重设密码 -->
+    <update id="queryUserPasswordByIdcard"  parameterType="java.lang.String">
+     update user set 
+    userPassword=#{UserPassword}  
+    where userIdcard=#{UserIdcard}  and 
+     userPhone=#{UserPhone} and
+      userEmil=#{UserEmil} 
+    </update>
+    <select id="queryUserPasswordByEmil" resultType="User" parameterType="java.lang.String">
+     SELECT
+     *
+     FROM user
+      WHERE 
+     userEmil=#{userEmil} 
+    </select>
+    
+    
+    <select id="queryUserInfoByUserId" resultType="User" parameterType="int">
+      SELECT
+     *
+     FROM user
+      WHERE 
+    userId=#{userId}  
+    </select>
+    <!-- 完善用户信息 -->
+    <update id="updateUserInfoByUserId"  parameterType="User">
+    
+     update user set 
+    userName=#{userName} ,
+    userNickName=#{userNickName},
+    userAge=#{userAge},
+    userEmil=#{userEmil},
+    userSex=#{userSex},
+    userText=#{userText},
+    userChangeTime=#{userChangeTime}
+    where userID=#{userID}  
+    </update>
+    
+    
+     <update id="updateUserPassword"  parameterType="User">
+    
+     update user set 
+    userPassword=#{userPassword} 
+    where userID=#{userID}  
+    </update>
+    
+    
+    
+    
+    <!--查询全部电话 -->
+    <select id="queryAllPhone" resultType="java.lang.String">
+ 		SELECT  userPhone FROM USER
+    </select>
+    
+    <select id="queryAllEmil" resultType="java.lang.String">
+ 		SELECT  userEmil FROM USER
+    </select>
+    
+    <select id="queryAllIdcard" resultType="java.lang.String">
+ 		SELECT  userIdcard FROM USER
+    </select>
+    
+   
+</mapper>

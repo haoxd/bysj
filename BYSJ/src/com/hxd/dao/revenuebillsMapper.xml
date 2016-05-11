@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+namespace="必须与对应的接口名一致";
+id：=“必须与接口的对应的方法名一直”
+
+
+  -->
+
+
+<mapper namespace="com.hxd.dao.revenuebillsMapper" >
+<!-- 添加二级缓存，以减少数据库的访问量 --> 
+<!-- 
+eviction="FIFO"  //回收策略为先进先出
+flushInterval="60000" //自动刷新时间60s
+size="512" //最多缓存512个引用对象
+readOnly="true"/> //只读
+ -->
+ <!-- 1. 映射语句文件中的所有select语句将会被缓存。 
+2. 映射语句文件中的所有insert，update和delete语句会刷新缓存。 
+3. 缓存会使用Least Recently Used（LRU，最近最少使用的）算法来收回。 
+4. 缓存会根据指定的时间间隔来刷新。 
+5. 缓存会存储1024个对象 -->
+<cache 
+size="512" 
+readOnly="true"
+flushInterval="60000"
+eviction="FIFO"
+>
+</cache>
+
+<insert id="addUserRevenueBills" parameterType="RevenueBills">
+insert into RevenueBills 
+    (revenueBillsName,revenueBillsState,revenueBillsBody,revenueBillsMoney,revenueBillsCreateTime,revenueBillsChangeTime,revenueBills_UserID)
+     values 
+    (
+    #{revenueBillsName},
+    #{revenueBillsState},
+    #{revenueBillsBody},
+    #{revenueBillsMoney},
+    #{revenueBillsCreateTime},
+    #{revenueBillsChangeTime},
+    #{revenueBills_UserID}
+    ) 
+</insert>
+<!-- 用户删除收入账单 -->
+<delete id="deleateUserRevenueBillsInfoByid" parameterType="int">
+ DELETE  FROM 
+  revenuebills
+   WHERE revenueBillsID =#{0} AND revenueBills_UserID = #{1};
+</delete>
+<!-- 编辑修改收入账单信息 -->
+<update id="updateUserRevenueBillsInfo" parameterType="RevenueBills">
+update revenuebills set 
+    revenueBillsName=#{revenueBillsName} ,
+    revenueBillsState=#{revenueBillsState},
+    revenueBillsBody=#{revenueBillsBody},
+    revenueBillsMoney=#{revenueBillsMoney},
+    revenueBillsChangeTime=#{revenueBillsChangeTime}  
+    where revenueBillsID=#{revenueBillsID}
+
+</update>
+<!-- 分页查询 -->
+<select id="queryUserRevenueBillsInfo" resultType="RevenueBills" parameterType="int">
+
+  SELECT * FROM
+   revenuebills
+    WHERE 
+    revenueBills_UserID=#{0}  
+    ORDER BY  revenueBillsChangeTime DESC  LIMIT #{1}, 5
+</select>
+<select id="getUserRevenusBillsInfoCountNumber" resultType="int" parameterType="int">
+ SELECT COUNT(*) FROM revenuebills  WHERE revenueBills_UserID = #{uid}
+
+</select>
+<!-- 一天的总数 -->
+<select id="getUserRevenusBillsInfoCountNumberDay" resultType="int" parameterType="int">
+SELECT COUNT(*) FROM revenuebills
+ WHERE 
+ TO_DAYS(revenueBillsCreateTime) = TO_DAYS(NOW())
+ AND  revenueBills_UserID =#{uid}
+
+</select>
+<!-- 一周的总数 -->
+<select id="getUserRevenusBillsInfoCountNumberWeek" resultType="int" parameterType="int">
+SELECT count(*) FROM revenuebills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 7 DAY)  &lt;= DATE(revenueBillsCreateTime)
+ AND  revenueBills_UserID =#{uid} 
+
+</select>
+<!-- 一个月的总数 -->
+<select id="getUserRevenusBillsInfoCountNumberMonth" resultType="int" parameterType="int">
+SELECT count(*) FROM revenuebills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= DATE(revenueBillsCreateTime)
+ AND  revenueBills_UserID =#{uid} 
+
+</select>
+<!-- 5000- -->
+<select id="getUserRevenusBillsInfoCountNumberWuQian" resultType="int" parameterType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid}  and
+ revenueBillsMoney &lt;5000
+
+</select>
+<!-- 5000-10000- -->
+<select id="getUserRevenusBillsInfoCountNumberWuQianYiW" resultType="int" parameterType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and
+  revenueBillsMoney &gt;=5000 and revenueBillsMoney &lt;10000
+  
+
+</select>
+<!-- 10000+- -->
+<select id="getUserRevenusBillsInfoCountNumberYiWShang" resultType="int" parameterType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and
+  revenueBillsMoney &gt;=10000 
+
+</select>
+
+
+<!-- 通过id查询信息 -->
+<select id="queryUserRevenueBillsInfoBuid" parameterType="int" resultType="RevenueBills">
+select * from revenuebills where revenueBillsID=#{rid}
+
+</select>
+<!-- 查询用户今天的收入账单 -->
+<select id="queryUserRevenuebillsThisDay" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE 
+ TO_DAYS(revenueBillsCreateTime) = TO_DAYS(NOW())
+ AND  revenueBills_UserID =#{0} 
+ ORDER BY  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+
+</select>
+<!-- 用户一周之内的收入账单 -->
+<select id="queryUserRevenuebillsThisWeek" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 7 DAY)  &lt;= DATE(revenueBillsCreateTime)
+  AND revenueBills_UserID =#{0} ORDER BY revenueBillsCreateTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<!-- 用户近一个月的收入账单 -->
+<select id="queryUserRevenuebillsThisMonth" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= DATE(revenueBillsCreateTime) AND 
+ revenueBills_UserID =#{0}  ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+
+</select>
+<!--  5000-账单-->
+<select id="queryUserRevenuebillsThisWuQian" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0}  and
+ revenueBillsMoney &lt;5000 ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+
+</select>
+
+<!--  5000+-10000-账单-->
+<select id="queryUserRevenuebillsThisWuQianYiW" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsMoney &gt;=5000 and revenueBillsMoney &lt;10000 ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+  
+
+</select>
+<!--  10000-账单-->
+<select id="queryUserRevenuebillsThisYiWShang" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsMoney &gt;=10000 ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+</select>
+
+<!-- 按类型的sql -->
+<!-- 查总数 -->
+<select id="getUserRevenusBillsInfoCountNumberGongZ" parameterType="int" resultType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and revenueBillsState='工资'
+
+</select>
+<!-- 外快 -->
+<select id="getUserRevenusBillsInfoCountNumberWaiK" parameterType="int" resultType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and revenueBillsState='外快'
+
+</select>
+<!-- 理财 -->
+<select id="getUserRevenusBillsInfoCountNumberLiCai" parameterType="int" resultType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and revenueBillsState='理财'
+
+</select>
+<!-- 贺礼 -->
+<select id="getUserRevenusBillsInfoCountNumberHeL" parameterType="int" resultType="int">
+SELECT count(*) FROM revenuebills
+ WHERE  revenueBills_UserID =#{uid} and revenueBillsState='贺礼'
+
+</select>
+
+<!-- 查信息 -->
+<!-- 工资 -->
+<select id="queryUserRevenuebillsThisGongZ" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsState='工资' ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+</select>
+<!-- 外快 -->
+<select id="queryUserRevenuebillsThisWaiK" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsState='外快' ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+</select>
+<!--  理财-->
+<select id="queryUserRevenuebillsThisLiCai" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsState='理财' ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+</select>
+<!--  贺礼-->
+<select id="queryUserRevenuebillsThisHeLi" resultType="RevenueBills" parameterType="int">
+SELECT * FROM revenuebills
+ WHERE  revenueBills_UserID =#{0} and
+  revenueBillsState='贺礼' ORDER BY 
+  revenueBillsCreateTime DESC  LIMIT #{1}, 5
+</select>
+</mapper>

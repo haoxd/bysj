@@ -1,0 +1,24 @@
+//按时间先后顺序查询数据库表记录
+SELECT * FROM USER ORDER BY UserCreateTime DESC
+
+//给字段加唯一索引
+ALTER TABLE USER ADD UNIQUE(UserPhone);
+
+
+//smsql 联合唯一索引（假设有这个需qiu,不能出现一样的一行数据）
+ALTER TABLE `userinvestment`ADD UNIQUE INDEX `userinvestment` (`uid`, `iid`) ;
+
+///一个月
+SELECT * FROM revenuebills WHERE 
+DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(revenueBillsCreateTime) AND revenueBills_UserID ='4' 
+ ORDER BY  revenueBillsCreateTime DESC  LIMIT 0, 5
+//一周
+SELECT * FROM revenuebills WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(revenueBillsCreateTime);
+//一天内
+SELECT * FROM revenuebills WHERE TO_DAYS(revenueBillsCreateTime) = TO_DAYS(NOW()) AND  revenueBills_UserID ='4' ORDER BY  revenueBillsCreateTime DESC  LIMIT 0, 5
+///
+
+
+
+//user表和investment表的关联查询
+SELECT * FROM investment WHERE investmentid IN (SELECT iid  FROM userinvestment WHERE uid =4)

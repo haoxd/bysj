@@ -1,0 +1,143 @@
+@charset "UTF-8";
+#dialog-gold-referee .title, #dialog-silver-referee .title {
+  color: #ff6c6b;
+  font-size: 23px;
+  font-weight: bold;
+  margin: 50px 0 20px;
+  text-align: center;
+}
+#dialog-gold-referee i, #dialog-silver-referee i {
+  display: block;
+  margin: 0 auto;
+}
+#dialog-gold-referee .content, #dialog-silver-referee .content {
+  color: #282828;
+  font-size: 18px;
+  line-height: 38px;
+  margin: 20px auto;
+  text-align: center;
+  width: 360px;
+}
+#dialog-gold-referee button, #dialog-silver-referee button {
+  background-color: #ff6c6b;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 22px;
+  margin: 35px auto;
+  width: 195px;
+  height: 45px;
+}
+#dialog-gold-referee button:hover, #dialog-silver-referee button:hover {
+  cursor: pointer;
+}
+
+#invite-red-envelope-info {
+  background-color: #f6f3d7;
+  border: 0 solid #787878;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #888;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  height: 65px;
+  z-index: 997;
+}
+#invite-red-envelope-info .invested, #invite-red-envelope-info .uninvest {
+  display: inline;
+}
+#invite-red-envelope-info i {
+  margin: 0 15px 5px 20px;
+}
+#invite-red-envelope-info span {
+  color: #ff6c6b;
+  font-weight: bold;
+  line-height: 70px;
+}
+#invite-red-envelope-info a {
+  color: #00a0e9;
+  margin: 0 40px 0 5px;
+  text-decoration: underline;
+}
+#invite-red-envelope-info .dialog-close {
+  position: absolute;
+  right: 20px;
+  width: 30px;
+  top: 11px;
+}
+
+#wx-red-envelope {
+  background-color: #f6f3d7;
+  border: 0 solid #787878;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #888;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  height: 65px;
+  z-index: 997;
+}
+#wx-red-envelope div {
+  text-align: right;
+}
+#wx-red-envelope div em {
+  font-style: normal;
+  color: #888888;
+  padding-left: 5px;
+}
+#wx-red-envelope .invested, #wx-red-envelope .uninvest {
+  display: inline;
+}
+#wx-red-envelope i {
+  margin: 0 15px 5px 20px;
+}
+#wx-red-envelope span {
+  color: #ff6c6b;
+  font-weight: bold;
+  line-height: 22px;
+}
+#wx-red-envelope a {
+  color: #00a0e9;
+  text-decoration: underline;
+  margin: 0 40px 0 10px;
+}
+#wx-red-envelope .dialog-close {
+  position: absolute;
+  right: 20px;
+  width: 30px;
+  top: 11px;
+}
+
+/* 微信分享红包pc端全局二维码*/
+.wx-red-hide {
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9998;
+}
+
+.wx-red-envelope-qr {
+  background: #fff;
+  z-index: 9999;
+  position: fixed;
+  width: 220px;
+  height: 320px;
+  top: 50%;
+  margin-top: -160px;
+  left: 50%;
+  margin-left: -110px;
+}
+.wx-red-envelope-qr .dialog-close {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  top: 11px;
+}

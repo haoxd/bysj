@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+namespace="必须与对应的接口名一致";
+id：=“必须与接口的对应的方法名一直”
+
+
+  -->
+
+
+<mapper namespace="com.hxd.dao.investmentMapper" >
+<!-- 添加二级缓存，以减少数据库的访问量 --> 
+<!-- 
+eviction="FIFO"  //回收策略为先进先出
+flushInterval="60000" //自动刷新时间60s
+size="512" //最多缓存512个引用对象
+readOnly="true"/> //只读
+ -->
+ <!-- 1. 映射语句文件中的所有select语句将会被缓存。 
+2. 映射语句文件中的所有insert，update和delete语句会刷新缓存。 
+3. 缓存会使用Least Recently Used（LRU，最近最少使用的）算法来收回。 
+4. 缓存会根据指定的时间间隔来刷新。 
+5. 缓存会存储1024个对象 -->
+<cache 
+size="512" 
+readOnly="true"
+flushInterval="60000"
+eviction="FIFO"
+>
+</cache>
+
+    <select id="queryInvestmentInfos" resultType="Investment"  parameterType="int">
+  
+    SELECT * FROM investment  ORDER BY investmentCreateTime DESC LIMIT #{fromNo}, 5
+        
+    </select>
+    
+    <select id="queryInvestmentinfoByIId" resultType="Investment"  parameterType="int"  >
+    
+    SELECT * FROM 
+    investment  where 
+    investmentId=#{investmentId}
+    
+    
+    </select>
+    
+    <select id="queryUserInvestment_tableByuid" parameterType="int" resultType="Integer">
+    
+    select iid
+    from userinvestment
+    where 
+    uid = #{uid}
+    
+    </select>
+     <select id="queryUserInvestment_tableTimeByuid" parameterType="int" resultType="String">
+    
+    select thisTime
+    from userinvestment
+    where 
+    uid = #{uid}
+    
+    </select>
+    <!-- 查询用户投资信息-->
+    <select id="queryUserInvestmentInfosByUid" parameterType="int" resultType="Investment">
+    SELECT * 
+     FROM investment
+     WHERE 
+     investmentId IN( SELECT iid FROM userinvestment WHERE uid = #{uid})
+    
+    </select>
+    
+    <!-- 获取投资信息总数 -->
+    <select id="getInvestmentInfoConutNumber" resultType="int">
+      SELECT COUNT(*) FROM investment;
+    
+    </select>
+    <!--添加用户投资信息  -->
+    <insert id="addUserInvestmentInfos" parameterType="java.util.Map" >
+    INSERT INTO userinvestment
+    (uid,iid,thisTime)
+     VALUES 
+    (
+    #{0},
+    #{1},
+    #{2}
+    ) 
+    
+    </insert>
+  <!--  用户撤销投资 -->
+  <delete id="deleateUserInvestmentInfo" parameterType="int">
+  DELETE  FROM 
+  userinvestment
+   WHERE uid =#{0} AND iid = #{1};
+  
+  
+  </delete>
+   
+</mapper>

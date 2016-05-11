@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxd.dao.spendingbillsMapper">
+<!-- 添加二级缓存，以减少数据库的访问量 --> 
+<!-- 
+eviction="FIFO"  //回收策略为先进先出
+flushInterval="60000" //自动刷新时间60s
+size="512" //最多缓存512个引用对象
+readOnly="true"/> //只读
+ -->
+ <!-- 1. 映射语句文件中的所有select语句将会被缓存。 
+2. 映射语句文件中的所有insert，update和delete语句会刷新缓存。 
+3. 缓存会使用Least Recently Used（LRU，最近最少使用的）算法来收回。 
+4. 缓存会根据指定的时间间隔来刷新。 
+5. 缓存会存储1024个对象 -->
+<cache 
+size="512" 
+readOnly="true"
+flushInterval="60000"
+eviction="FIFO"
+>
+</cache>
+<!-- 添加支出账单 -->
+<insert id="addUserSpendingBills" parameterType="SpendingBills">
+ insert into spendingbills 
+    (spendingBillsName,spendingBillsState,
+    spendingBillsCreateTime,spendingBillschangeTime,
+    spendingBillsBody,spendingBillsMoney,spendingBills_User)
+     values 
+    (
+    #{spendingBillsName},
+    #{spendingBillsState},
+    #{spendingBillsCreateTime},
+    #{spendingBillschangeTime},
+    #{spendingBillsBody},
+    #{spendingBillsMoney},
+    #{spendingBills_User}
+    ) 
+</insert>
+<!--用户删除某一条自己的支出账单  -->
+<delete id="deleateUserSpendingBillsInfo" parameterType="int"  >
+DELETE  FROM 
+  spendingbills
+   WHERE spendingBillsId =#{0} AND spendingBills_User = #{1};
+
+
+</delete>
+<!-- 编辑支出账单信息 -->
+<update id="updateUserSpendingBillsInfo" parameterType="SpendingBills">
+update spendingbills set 
+    spendingBillsName=#{spendingBillsName} ,
+    spendingBillsState=#{spendingBillsState},
+    spendingBillsBody=#{spendingBillsBody},
+    spendingBillsMoney=#{spendingBillsMoney},
+    spendingBillschangeTime=#{spendingBillschangeTime}  
+    where spendingBillsId=#{spendingBillsId}
+
+</update>
+<!-- 分页查询用户  -->
+<select id="queryUserSpendingBillsInfos" parameterType="int" resultType="SpendingBills">
+select * from spendingbills 
+ WHERE 
+    spendingBills_User=#{0}  
+    ORDER BY  spendingBillschangeTime DESC  LIMIT #{1}, 5
+</select>
+<!--查询用户的支出账单的总数  -->
+<select id="getUserSpendingBillsInfosNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills where spendingBills_User=#{uid}
+
+</select>
+<!-- 查询单个支出账单的信息 -->
+<select id="queryUserSpendinginfoByid" parameterType="int" resultType="SpendingBills">
+select * from spendingbills where spendingBillsId=#{sid}
+</select>
+<!-- 按类型查询 总数-->
+<select id="getUserSpendingBillsToChiFanNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills where spendingBills_User=#{uid} and spendingBillsState='吃饭'
+
+</select>
+<select id="getUserSpendingBillsToLvYouNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills where spendingBills_User=#{uid} and spendingBillsState='旅游'
+
+</select>
+<select id="getUserSpendingBillsToGuangJNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills where spendingBills_User=#{uid} and spendingBillsState='逛街'
+
+</select>
+<select id="getUserSpendingBillsToQiTaNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills where spendingBills_User=#{uid} and spendingBillsState='其他'
+
+</select>
+<!-- 按时间查询总数 -->
+<select id="getUserSpendingBillsToThisDayNumber" parameterType="int" resultType="int">
+select Count(*) from spendingbills
+WHERE 
+ TO_DAYS(spendingBillschangeTime) = TO_DAYS(NOW())
+ AND  spendingBills_User =#{uid}
+
+</select>
+<select id="getUserSpendingBillsToThisWeekNumber" parameterType="int" resultType="int">
+SELECT count(*) FROM spendingbills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 7 DAY)  &lt;= DATE(spendingBillschangeTime)
+ AND  spendingBills_User =#{uid} 
+</select>
+<select id="getUserSpendingBillsToThisMonthNumber" parameterType="int" resultType="int">
+SELECT count(*) FROM spendingbills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= DATE(spendingBillschangeTime)
+ AND  spendingBills_User =#{uid} 
+
+</select>
+<!-- 按金额查询总数 -->
+<select id="getUserSpendingBillsToWuQianSNumber" parameterType="int" resultType="int">
+SELECT count(*) FROM spendingbills
+ WHERE  spendingBills_User =#{uid} and
+  spendingBillsMoney &gt;=5000 
+
+</select>
+<select id="getUserSpendingBillsToYiQDWuQiNumber" parameterType="int" resultType="int">
+SELECT count(*) FROM spendingbills
+ WHERE  spendingBills_User =#{uid} and
+  spendingBillsMoney &gt;=1000 and spendingBillsMoney &lt;5000
+
+</select>
+<select id="getUserSpendingBillsToYiQXNumber" parameterType="int" resultType="int">
+SELECT count(*) FROM spendingbills
+ WHERE  spendingBills_User =#{uid}  and
+ spendingBillsMoney &lt;1000
+
+</select>
+<!-- 按类型查询集合 -->
+<select id="queryUserSpendingBillsToChiFan" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+  spendingBillsState='吃饭' ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToLvYou" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+  spendingBillsState='旅游' ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToGuangJ" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+  spendingBillsState='逛街' ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToQiTa" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+spendingBillsState='其他' ORDER BY 
+spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<!-- 按时间查询集合 -->
+<select id="queryUserSpendingBillsToThisDay" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE 
+ TO_DAYS(spendingBillschangeTime) = TO_DAYS(NOW())
+ AND  spendingBills_User =#{0} 
+ ORDER BY  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToThisWeek" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE 
+ DATE_SUB(CURDATE(), INTERVAL 7 DAY)  &lt;= DATE(spendingBillschangeTime)
+  AND spendingBills_User =#{0} 
+  ORDER BY spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+
+
+</select>
+<select id="queryUserSpendingBillsToThisMonth" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+WHERE 
+DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= DATE(spendingBillschangeTime) AND 
+spendingBills_User =#{0}  ORDER BY 
+spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<!-- 按金额查询 -->
+<select id="queryUserSpendingBillsToWuQianS" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+  spendingBillsMoney &gt;=5000 ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToYiQDWuQi" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0} and
+  spendingBillsMoney &gt;=1000 and spendingBillsMoney &lt;5000 ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+<select id="queryUserSpendingBillsToYiQX" parameterType="int" resultType="SpendingBills">
+SELECT * FROM spendingbills
+ WHERE  spendingBills_User =#{0}  and
+ spendingBillsMoney &lt;1000 ORDER BY 
+  spendingBillschangeTime DESC  LIMIT #{1}, 5
+
+
+</select>
+</mapper>

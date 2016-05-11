@@ -1,0 +1,725 @@
+#section p{
+    padding: 0;
+    margin: 0;
+}
+#section a{
+    text-decoration: none;
+}
+#section .content{
+    width: 1170px;
+    margin: 0 auto;
+    margin-top: 86px;
+}
+
+#section .biaoQian{
+    color: #ccc;
+}
+
+#section .biaoQian_shangJi{
+    color: #666666;
+    font-weight: bold;
+    margin:0 10px;
+}
+
+#section .biaoQian_dangQian{
+    color: #ED6236;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#section .quanBuShangPing{
+    margin: 20px 0 24px;
+    border: 1px #EBEBEB solid;
+    border-top: 3px #ED6236 solid;
+    overflow: hidden;
+    position: relative;
+}
+
+#section .biaoTi{
+    overflow: hidden;
+    margin: 0 8px 0 15px;
+    height: 49px;
+}
+
+#section .biaoTi_left{
+    float: left;
+    color: #e2582d;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#section .biaoTi_right{
+    float: right;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+#section .biaoTi_right button{
+    padding-left: 23px;
+    color: #4a4a4a;
+    font-size: 14px;
+    border: none;
+    background-color:rgba(0,0,0,0);
+    outline: none;
+}
+
+#section .daTu{
+    margin-right: 20px;
+    background:url("../image/gridlg.png") 0 3px no-repeat;
+}
+#section .liangLie{
+    margin-right: 20px;
+    background:url("../image/list-th-lg-r.png") 0 3px no-repeat;
+}
+
+#section .lieBiao{
+    background:url("../image/list-th-lg-r.png") 0 3px no-repeat;
+}
+
+#section .shaiXuan{
+    border-top: 1px #EBEBEB solid;
+    border-bottom: 1px #EBEBEB solid;
+    height: 50px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    position: relative;
+    z-index: 9999999;
+}
+
+#section .shaiXuan div{
+    float: left;
+    color: #4A4A4A;
+    font-size: 14px;
+    text-align: center;
+    border-right: 1px #EBEBEB solid;
+    padding-top:15px;
+    height: 49px;
+    *height: 35px;
+    cursor: pointer;
+}
+
+#section .shaiXuan img{
+    margin-left: 5px;
+}
+
+#section .moRen{
+    width: 98px;
+}
+
+#section .xiaoLiang{
+    width: 98px;
+}
+
+#section .haoPing{
+    width: 96px;
+}
+
+#section .chuBanShiJian{
+    width: 98px;
+}
+
+#section .jiaGe{
+    width: 98px;
+}
+
+#section .shaiXuan .shaiXuan_xuanZhong{
+    color: #ED6236;
+}
+
+#section .fanWei{
+    width: 196px;
+}
+#section .fanWei span{
+    display: inline-block;
+    vertical-align: text-top;
+    width: 6px;
+    border-top: 1px #979797 solid;
+    margin: 9px 3px 4px;
+}
+#section .fanWei input{
+    border: none;
+    background-color: #D7D7D7;
+    width: 48px;
+    height: 24px;
+}
+#section .fanWei_left{
+    margin-left: 6px;
+}
+
+#section .shaiXuan .diZhi{
+    width: 100px;
+    position: relative;
+    padding-top: 0;
+    line-height: 50px;
+    z-index: 99999999999;
+    *height: 49px;
+}
+#section .diZhi span{
+    font-size: 14px;
+    color: #4A4A4A;
+}
+#section .diZhi ul{
+    display: none;
+    width: 101px;
+    position: absolute;
+    top: 49px;
+    left: -1px;
+    border: 1px #ebebeb solid;
+    border-top: none;
+    background-color: #fff;
+    z-index: 999999999999;
+}
+#section .diZhi li{
+    font-size: 14px;
+    color: #4A4A4A;
+    text-indent: -8px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px #ebebeb solid;
+    cursor: pointer;
+}
+#section .diZhi li:hover{
+    background-color: #D7D7D7;;
+}
+
+#section .shaiXuan .fanYe{
+    width: 147px;
+    float: right;
+    border: none;
+    border-left: 1px #EBEBEB solid;
+}
+
+#section .fanYe button{
+    border: none;
+    background-color: #fff;
+    outline: none;
+}
+#section .fanYe img{
+    position: absolute;
+    top: 20px;
+}
+#section .quanBuShangPing_shangYe{
+    float: left;
+    margin-right: 10px;
+}
+#section .quanBuShangPing_xiaYe{
+   float: right;
+    margin-right: 15px;
+}
+
+#section .book{
+    height: 294.2px;
+    border-bottom: 1px #EBEBEB solid;
+}
+#section .book_left{
+    float: left;
+    width: 293px;
+    height: 100%;
+    background: #fff;
+    border-right: 1px #EBEBEB solid;
+    text-align: center;
+    position: relative;
+    line-height: 294px;
+}
+#section .yuLanTu{
+    width: 50%;
+}
+#section .book_left .yuShou{
+    margin-top: 0px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#section .book_right{
+    float: left;
+    width: 874px;
+    color: #B5B5B5;
+    position: relative;
+}
+#section .book_right .shuMing a{
+    color: #4A4A4A;
+    font-size: 20px;
+    font-weight: bold;
+}
+#section .book_right a:hover{
+    color:#ED6236;
+}
+#section .book_right .zuoZhe{
+    height: 38px;
+    font-size: 12px;
+    margin: 6px 0 0 15px;
+}
+#section .book_right .jianJie{
+    font-size: 14px;
+    margin-top: 13px;
+    line-height: 24px;
+}
+#section .lieBiao_books .jianJie{
+    margin-left: 15px;
+}
+#section .book_right_bottom{
+    width: 92%;
+    position: absolute;
+    top: 170px;
+    left: 15px;
+}
+#section .liangLan_books .book_right_bottom{
+    top: 230px;
+}
+#section .price_2{
+    margin-top: 68px;
+}
+#section .price_2 .money{
+    color: #ED6236;
+    font-size: 26px;
+    font-weight: bold;
+}
+#section .price_2 .money span{
+    font-size: 12px;
+    margin-left:4px;
+}
+#section .price_2 .originalPrice,#section .price_2 .zheKou{
+    font-size: 12px;
+}
+#section .price_2 .originalPrice{
+    margin:0 4px 0 8px;
+    text-decoration:line-through;
+}
+#section .price_2 .gongNeng{
+    position: absolute;
+    right: 0;
+}
+#section .price_2 button{
+    border: none;
+    background: #fff;
+    color: #F8CA4F;
+    font-size:14px;
+}
+#section .price_2 button img,#section .price_2 a img{
+    margin-right: 12px;
+    margin-bottom: 3px;
+}
+#section .price_2 a{
+    color: #ED6236;
+    font-size:14px;
+    border-left: 1px #EBEBEB solid;
+    padding-left: 20px;
+    margin-left: 12px;
+}
+#section .book_right svg{
+    position: absolute;
+    right: 22px;
+    top: 8px;
+}
+#section .book_right .pinFen{
+    color: #f8ca4f;
+    font-size: 19.4px;
+    position: absolute;
+    right: 32.5px;
+    top: 20.3px;
+}
+#section .page{
+    text-align: center;
+    height: 50px;
+    position: relative;
+}
+#section .yeShu{
+    float: left;
+    margin: 11px 0 0 380px;
+}
+#section .page div{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+#section .page button{
+    display: inline-block;
+    width: 30px;
+    font-size: 20px;
+    color: #909090;
+    border: none;
+    background: #fff;
+    outline: none;
+}
+#section .page button img{
+    margin-top: -3px;
+}
+#section .page .xuanZhongYeShu{
+    color: #ED6236;
+}
+#section .page .tiaoYe{
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    font-size: 14px;
+}
+#section .page input{
+    width: 48px;
+    height: 24px;
+    border: none;
+    background-color: #D8D8D8;
+    margin: 0 11px 0 6px;
+}
+#section .page .tiaoYe button{
+    width: 48px;
+    height: 24px;
+    font-size: 12px;
+    background-color: #F8CA4F;
+    color: #4A4A4A;
+    margin-left: 10px;
+}
+
+#section .caiNi{
+    border: 1px #ebebeb solid;
+    margin: 37.5px 0 55px 0;
+    overflow: hidden;
+}
+#section .caiNi .shuMing{
+    margin:0;
+}
+#section .caiNi .biaoTi2{
+    font-size: 20px;
+    font-weight: bold;
+    color: #f37845;
+    border-bottom: 1px #ebebeb solid;
+    height: 49px;
+    padding: 0 11px 0 11px;
+    line-height: 49px;
+    position: relative;
+}
+#section .caiNiShu{
+    position: relative;
+    overflow: hidden;
+    height: 290px;
+}
+#section .caiNi_neiRong{
+    width: 101%;
+    height: 100%;
+}
+#section .caiNi_neiRong2{
+    display: none;
+}
+#section .caiNi .books{
+    float: left;
+    width: 195px;
+    height: 100%;
+    border: none;
+    border-right: 1px #ebebeb solid;
+}
+#section .caiNi .books a{
+    color: #4A4A4A;
+}
+#section .caiNi .books a:hover{
+    color: #ED6236;
+}
+#section .caiNi .books_top{
+    background:#ffffff;
+    border-bottom: 1px #EBEBEB solid;
+    height: 196px;
+    text-align: center;
+    position: relative;
+}
+#section .caiNi .books_1{
+    box-shadow: 0 2px 5px 0 #000;
+    width: 100px;
+    height: 150px;
+    margin-top: 22px;
+}
+#section .caiNi .books_bottom{
+    margin: 0 auto;
+    position: relative;
+    padding: 1px 0 0 10px;
+}
+#section .caiNi .introduction{
+    position: absolute;
+    top: 10px;
+    width: 88%;
+}
+#section .caiNi .shuMing{
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+#section .caiNi .zuoZhe{
+    color: #B5B5B5;
+    font-size: 12px;
+    margin-top: 4px;
+}
+#section .caiNi .price_2{
+    margin:66px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+#section .caiNi .money{
+    font-size: 14px;
+    color: #ED6236;
+    font-weight: bold;
+    float: left;
+}
+
+#section .caiNi svg{
+    position: absolute;
+    right: 10px;
+    top: 55px;
+}
+#section .caiNi .pinFen{
+    color: #f8ca4f;
+    font-size: 12px;
+    position: absolute;
+    top: 63px;
+    right: 17.5px;
+}
+#section .caiNi .biaoTi2_right{
+    position: absolute;
+    right: 11px;
+    top: 15px;
+    color: #4A4A4A;
+    font-size: 14px;
+}
+#section .caiNi .caiNi_xiaYe,#section .caiNi .caiNi_shangYe{
+    border: none;
+    background-color: #fff;
+    outline: none;
+}
+#section .caiNi .biaoTi2_right img{
+    margin-bottom: 4px;
+}
+#section .daTu_books{
+    overflow: hidden;
+    width: 101%;
+    border-bottom: 1px #EBEBEB solid;
+}
+#section .daTu_book{
+    width: 292px;
+    height: 419.6px;
+    float: left;
+    border-right: 1px #EBEBEB solid;
+    border-bottom: 1px #EBEBEB solid;
+    position: relative;
+}
+#section .daTu_book a{
+    color: #4A4A4A;
+}
+#section .daTu_book_top{
+    background:#fff;
+    border-bottom: 1px #EBEBEB solid;
+    height: 292px;
+    text-align: center;
+    position: relative;
+    line-height: 292px;
+}
+#section .daTu_book_bottom{
+    margin: 12px 15px 0;
+}
+#section .introduction{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+#section .yuShou{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#section .shuMing{
+   font-size: 16px;
+   font-weight: bold;
+   margin: 20px 15px 0;
+}
+#section .daTu_book_bottom .shuMing{
+    margin:0;
+}
+#section .zuoZhe{
+    font-size: 12px;
+    color: #B5B5B5;
+    margin-top: 4px;
+}
+#section .daTu_book_bottom .price_2{
+    margin-top: 26px;
+    position: absolute;
+    bottom: 10px;
+}
+#section .daTu_book_bottom .money span{
+    margin-left: 2px;
+}
+#section .daTu_book_bottom .originalPrice{
+    color: #B5B5B5;
+    margin-left: 4px;
+}
+#section .daTu_book svg{
+    float: right;
+    position: absolute;
+    bottom: 10px;
+    right: 13px;
+}
+#section .daTu_book .pinFen{
+    font-size: 12px;
+    color: #F8CA4F;
+    float: right;
+    position: absolute;
+    bottom: 17px;
+    right: 19px;
+}
+#section .daTu_book_kuang{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px #ED6236 solid;
+    width: 291px;
+    height: 100%;
+    color: #fff;
+    display: none;
+}
+#section .daTu_book_kuang a{
+    display: block;
+    height: 90%;
+}
+#section .daTu_book_kuang_bottom{
+    width: 100%;
+    height: 50px;
+    background-color: #ED6236;
+    position: absolute;
+    bottom: 0;
+
+}
+#section .daTu_book_kuang_bottom div{
+    position: absolute;
+    right: 12px;
+    top: 20px;
+}
+#section .daTu_book_kuang_bottom .money{
+    float: left;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#section .daTu_book_kuang .money span{
+    font-size: 12px;
+    margin-left: 3px;
+}
+#section  .shouCang span{
+    font-size: 14px;
+}
+#section .daTu_book_kuang button{
+    border: none;
+    background-color: #ED6236;
+    padding: 0;
+    margin-left: 8px;
+    color: #fff;
+}
+#section .daTu_book_kuang .shouCang{
+    margin-bottom: 7px;
+}
+#section .daTu_book_kuang img{
+    margin-bottom: 7px;
+}
+#section .liangLan_books{
+    width: 101%;
+    overflow: hidden;
+    border-bottom: 1px #EBEBEB solid;
+}
+#section .liangLan_book{
+    float: left;
+    overflow: hidden;
+    height: 100%;
+    width: 584px;
+    border-right: 1px #ebebeb solid;
+    border-bottom: 1px #ebebeb solid;
+    position: relative;
+}
+#section .liangLan_book .book_right,#section .liangLan_book .book_left{
+    float: left;
+}
+#section .liangLan_book .book_right{
+    width: 290px;
+}
+#section .liangLan_book .shuMing a{
+    font-size: 16px;
+}
+#section .liangLan_book .zuoZhe{
+    font-size: 12px;
+    height: auto;
+    margin-left: 15px;
+}
+#section .liangLan_book .jianJie{
+    font-size: 13px;
+    height: 96px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    position: absolute;
+    top: 120px;
+    left: 15px;
+}
+#section .liangLan_book .price_2{
+    margin-top: 11px;
+    border-top: 1px #ebebeb solid;
+    padding-top: 5px;
+}
+#section .liangLan_book svg{
+    top: 250px;
+    right: 10px;
+}
+#section .liangLan_book .pinFen{
+    font-size: 12px;
+    top: 257px;
+    right: 17px;
+}
+#section .liangLan_book_kuang{
+    width: 583px;
+    *width: 582px;
+    height: 100%;
+    *height: 99%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px #ED6236 solid;
+    color: #fff;
+    display: none;
+}
+#section .liangLan_book_kuang a{
+    display: block;
+    height: 100%;
+}
+#section .liangLan_book_kuang_bottom{
+    width: 290px;
+    background-color: #ED6236;
+    height: 52px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#section .liangLan_book_kuang_bottom div{
+    position: absolute;
+    right: 10px;
+    top: 14px;
+}
+#section .liangLan_book_kuang_bottom .money{
+    float: left;
+    font-size: 26px;
+    font-weight: bold;
+    margin:5px 0 0 15px;
+}
+#section .liangLan_book_kuang .money span{
+    font-size: 12px;
+    margin-left: 3px;
+}
+#section .shouCang span{
+    font-size: 14px;
+}
+#section .liangLan_book_kuang button{
+    border: none;
+    background-color: #ED6236;
+    padding: 0;
+    margin-left: 8px;
+    color: #fff;
+}
+#section .liangLan_book_kuang .shouCang{
+    float: left;
+}
